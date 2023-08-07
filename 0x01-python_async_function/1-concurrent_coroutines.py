@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-'''ultiple coroutines
-at the same time with async
+'''
+Execution of multiple co-routines ansynchrously
 '''
 
 import asyncio
@@ -12,10 +12,17 @@ wait_random = __import__("0-basic_async_syntax").wait_random
 
 
 async def wait_n(n: int, max_delay: int) -> List[float]:
-    '''return the list of all the delays (float values)
     '''
-    waits = await asyncio.gather(
+    Creates a list of co-routine delays
+
+    Args:
+        n: Number of list items
+        max_delay: Max amount of seconds function delayed
+
+    Return: List of sorted delay times
+    '''
+    delays = await asyncio.gather(
         *list(map(lambda _: wait_random(max_delay), range(n)))
     )
 
-    return sorted(waits)
+    return sorted(delays)
